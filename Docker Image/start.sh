@@ -5,6 +5,7 @@ REG_TOKEN=$REG_TOKEN
 NAME=$NAME
 
 cd /home/runner/actions-runner || exit
+service docker start
 ./config.sh --url https://github.com/${REPO} --token ${REG_TOKEN} --name ${NAME}
 
 cleanup() {
