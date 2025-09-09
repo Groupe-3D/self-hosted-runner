@@ -36,7 +36,7 @@ RUN apt-get update \
                    python3-dev \
                    python3-pip \
                    python3-venv \
-    && usermod -aG docker runner
+    && usermod -aG sudo runner
 RUN apt-get -yqq install ssh
 # Set up the actions runner
 RUN cd /home/runner && mkdir actions-runner && cd actions-runner \
