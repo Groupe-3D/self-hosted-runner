@@ -11,7 +11,7 @@ RUN useradd -m runner
 
 # Install necessary packages
 RUN apt install -y --no-install-recommends \
-    curl build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip jq libyaml-0 libgmp
+    curl build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip jq libyaml-dev
 RUN apt-get -yqq install ssh
 # Set up the actions runner
 RUN cd /home/runner && mkdir actions-runner && cd actions-runner \
