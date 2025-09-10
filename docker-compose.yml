@@ -18,5 +18,8 @@ services:
         reservations:
           cpus: '0.4'
           memory: 256M
+    group_add:
+      # Run echo DOCKER_GID=$(stat -c '%g' /var/run/docker.sock) >> .env in the host
+      - "${DOCKER_GID}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
