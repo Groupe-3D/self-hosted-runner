@@ -1,6 +1,7 @@
 FROM ubuntu:24.04
 
 ARG RUNNER_VERSION="2.328.0"
+ARG NVM_DIR="/usr/local/share/nvm"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install base dependencies
