@@ -6,7 +6,7 @@ NAME=$NAME
 
 cd /home/runner/actions-runner || exit
 
-sudo service docker start
+service docker start
 
 ./config.sh --url https://github.com/${REPO} --token ${REG_TOKEN} --name ${NAME}
 

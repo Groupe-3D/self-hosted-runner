@@ -10,6 +10,7 @@ RUN apt-get update -y \
                 build-essential \
                 ca-certificates \
                 curl \
+                iptables \
                 jq \
                 libffi-dev \
                 libssl-dev \
@@ -36,7 +37,8 @@ RUN install -m 0755 -d /etc/apt/keyrings \
                    docker-buildx-plugin \
                    docker-ce \
                    docker-ce-cli \
-                   docker-compose-plugin
+                   docker-compose-plugin \
+    && rm -rf /var/lib/apt/lists/*
 
 # Add a user named runner and adding it to sudoers and Docker group
 RUN useradd -m runner \
