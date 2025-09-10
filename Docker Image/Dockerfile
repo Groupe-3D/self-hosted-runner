@@ -3,14 +3,6 @@ FROM ubuntu:24.04
 ARG RUNNER_VERSION="2.328.0"
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Add a user named runner and adding it to sudoers and Docker group
-RUN useradd -m runner \
-    && groupadd docker \
-    && usermod -aG sudo runner \
-    && usermod -aG docker runner \
-    && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
-    && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
-
 # Install base dependencies
 RUN apt-get update -y \
     && apt-get upgrade -y \
@@ -45,6 +37,14 @@ RUN install -m 0755 -d /etc/apt/keyrings \
                    docker-ce \
                    docker-ce-cli \
                    docker-compose-plugin
+
+# Add a user named runner and adding it to sudoers and Docker group
+RUN useradd -m runner \
+    && groupadd docker \
+    && usermod -aG sudo runner \
+    && usermod -aG docker runner \
+    && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
+    && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
 
 # Set up the actions runner
 RUN cd /home/runner \
