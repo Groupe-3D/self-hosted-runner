@@ -6,7 +6,7 @@ NAME=$NAME
 
 cd /home/runner/actions-runner || exit
 
-/usr/bin/dockerd &
+sudo /usr/bin/dockerd &
 
 ./config.sh --url https://github.com/${REPO} --token ${REG_TOKEN} --name ${NAME}
 

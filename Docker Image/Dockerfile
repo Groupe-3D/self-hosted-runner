@@ -13,9 +13,9 @@ RUN useradd -m runner \
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y \
+                build-essential \
                 ca-certificates \
                 curl \
-                build-essential \
                 jq \
                 libffi-dev \
                 libssl-dev \
@@ -24,7 +24,8 @@ RUN apt-get update -y \
                 python3-dev \
                 python3-pip \
                 python3-venv \
-                ssh
+                ssh \
+                sudo
 
 # Install Docker
 RUN install -m 0755 -d /etc/apt/keyrings \
