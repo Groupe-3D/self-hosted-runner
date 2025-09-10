@@ -42,7 +42,9 @@ RUN apt-get update -y && \
                 vim \
                 wget \
                 xz-utils \
-                zip
+                zip \
+                zlib1g-dev \
+                zstd
 
 # Install Docker
 RUN install -m 0755 -d /etc/apt/keyrings && \
@@ -87,10 +89,10 @@ ENV PATH=${NVM_DIR}/versions/node/*/bin:${PATH}
 
 # Install Python
 RUN curl -fsSL https://pyenv.run | bash && \
-    echo 'export PYENV_ROOT="/root/.pyenv"' >> /etc/profile && \
+    echo 'export PYENV_ROOT="/home/runner/.pyenv"' >> /etc/profile && \
     echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> /etc/profile && \
     echo 'eval "$(pyenv init -)"' >> /etc/profile
-ENV PYENV_ROOT=/root/.pyenv
+ENV PYENV_ROOT=/home/runner/.pyenv
 ENV PATH=$PYENV_ROOT/bin:$PATH
 RUN bash -lc 'pyenv install 3.10.14 && pyenv install 3.11.9 && pyenv install 3.12.5 && pyenv global 3.12.5' && \
     bash -lc 'pip install --upgrade pip pipx virtualenv'
