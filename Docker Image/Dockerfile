@@ -40,7 +40,8 @@ RUN install -m 0755 -d /etc/apt/keyrings \
 
 # Add a user named runner and adding it to sudoers and Docker group
 RUN useradd -m runner \
-    && groupadd docker \
+    # Docker group is already created by Docker
+    # && groupadd docker \
     && usermod -aG sudo runner \
     && usermod -aG docker runner \
     && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
