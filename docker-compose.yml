@@ -18,3 +18,5 @@ services:
         reservations:
           cpus: '0.4'
           memory: 256M
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
