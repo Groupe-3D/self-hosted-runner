@@ -41,8 +41,7 @@ RUN install -m 0755 -d /etc/apt/keyrings \
 
 # Add a user named runner and adding it to sudoers and Docker group
 RUN useradd -m runner \
-    # Docker group is already created by Docker
-    # && groupadd docker \
+    && groupadd docker \
     && usermod -aG sudo root \
     && usermod -aG sudo runner \
     && usermod -aG docker runner \
