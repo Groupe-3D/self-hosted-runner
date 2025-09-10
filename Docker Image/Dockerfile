@@ -7,7 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN useradd -m runner \
     && groupadd docker \
     && usermod -aG sudo runner \
-    && usermod -aG docker runner
+    && usermod -aG docker runner \
+    && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
+    && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
 
 # Install base dependencies
 RUN apt-get update -y \
