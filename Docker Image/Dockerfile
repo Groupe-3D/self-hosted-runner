@@ -84,6 +84,16 @@ RUN mkdir -p ${NVM_DIR} /usr/local/lib/node_modules && \
     ln -s ${NVM_DIR}/versions/node/*/bin/pnpm /usr/local/bin/pnpm || true
 ENV PATH=${NVM_DIR}/versions/node/*/bin:${PATH}
 
+# Install Python
+RUN curl -fsSL https://pyenv.run | bash && \
+    echo 'export PYENV_ROOT="/root/.pyenv"' >> /etc/profile && \
+    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> /etc/profile && \
+    echo 'eval "$(pyenv init -)"' >> /etc/profile
+ENV PYENV_ROOT=/root/.pyenv
+ENV PATH=$PYENV_ROOT/bin:$PATH
+RUN bash -lc 'pyenv install 3.10.14 && pyenv install 3.11.9 && pyenv install 3.12.5 && pyenv global 3.12.5' && \
+    bash -lc 'pip install --upgrade pip pipx virtualenv'
+
 # Add a user named runner and adding it to sudoers and Docker group
 RUN useradd -m runner && \
     groupadd docker && \
